@@ -1,2 +1,171 @@
 # TaskFlowSPA
-TaskFlowSPA es un sistema de gestión de tareas desarrollado como SPA con JavaScript Vanilla, que implementa autenticación, autorización basada en roles y permisos, vistas protegidas y una arquitectura frontend escalable y modular.
+
+TaskFlowSPA es una aplicacion web tipo SPA (Single Page Application) construida con JavaScript Vanilla, HTML, CSS y Tailwind CSS. Su objetivo es simular un sistema moderno de gestion de tareas y productividad mientras sirve como base practica para aprender arquitectura frontend sin depender de frameworks como React, Vue o Angular.
+
+La aplicacion usara routing del lado del cliente con History API para navegar entre vistas sin recargar toda la pagina, integrando autenticacion, autorizacion por roles, proteccion de rutas, renderizado dinamico y persistencia de datos con un backend fake basado en `json-server`.
+
+## Objetivo del proyecto
+
+Este proyecto esta pensado para practicar fundamentos clave del desarrollo frontend moderno:
+
+- Routing SPA.
+- Arquitectura frontend modular.
+- Separacion de responsabilidades.
+- Manejo de estado basico.
+- Guards y proteccion de rutas.
+- Reutilizacion de componentes.
+- Escalabilidad en Vanilla JS.
+
+## Stack principal
+
+- JavaScript Vanilla
+- HTML5
+- CSS3
+- Tailwind CSS
+- Vite
+- JSON Server como backend fake
+
+## Funcionalidades previstas
+
+- Inicio de sesion y cierre de sesion.
+- Manejo de sesion del usuario.
+- Rutas publicas y privadas.
+- Sistema de roles y permisos.
+- Navegacion SPA con `History API`.
+- Renderizado dinamico de vistas.
+- Componentes reutilizables.
+- CRUD completo de tareas.
+- Dashboard principal con estadisticas basicas.
+- Panel administrativo para usuarios `ADMIN`.
+- Consumo de datos desde un backend fake con `json-server`.
+
+## Roles iniciales
+
+### `ADMIN`
+
+- Puede gestionar usuarios.
+- Puede visualizar todas las tareas.
+- Puede modificar roles y permisos.
+- Tiene acceso completo al sistema.
+
+### `USER`
+
+- Puede crear, editar y eliminar sus propias tareas.
+- Puede visualizar solo la informacion relacionada con su cuenta.
+
+## Alcance funcional esperado
+
+La SPA deberia incluir, como minimo, los siguientes modulos o vistas:
+
+- `Login`
+- `Dashboard`
+- `Mis tareas`
+- `Detalle o formulario de tarea`
+- `Administracion de usuarios` solo para `ADMIN`
+- `Pagina 404`
+
+## Arquitectura sugerida
+
+Una estructura inicial sugerida para mantener el proyecto modular y escalable es:
+
+```text
+src/
+  app/
+    router/
+    store/
+    guards/
+  modules/
+    auth/
+    dashboard/
+    tasks/
+    admin/
+  components/
+  services/
+  utils/
+  styles/
+```
+
+### Principios de arquitectura
+
+- Cada modulo debe encargarse de una responsabilidad clara.
+- Las vistas no deben contener toda la logica de negocio.
+- El acceso al backend debe centralizarse en `services`.
+- La logica de permisos debe aislarse en guards o utilidades de autorizacion.
+- Los componentes compartidos deben ser reutilizables y agnosticos del modulo cuando sea posible.
+- Las vistas deben apoyarse en Tailwind CSS para mantener consistencia visual y velocidad de construccion.
+
+## Flujo general de navegacion
+
+1. El usuario entra a la aplicacion.
+2. Si no tiene sesion activa, ve la vista de `login`.
+3. Tras autenticarse, el router redirige segun su estado de sesion y permisos.
+4. Las rutas privadas validan autenticacion antes de renderizar.
+5. Las rutas administrativas validan autenticacion y rol `ADMIN`.
+
+## Reglas de negocio base
+
+- Un `USER` solo puede manipular sus propias tareas.
+- Un `ADMIN` puede ver y administrar todas las tareas y usuarios.
+- Las rutas privadas no deben renderizarse si no existe una sesion valida.
+- El estado de autenticacion debe persistirse de forma controlada en el navegador.
+
+## Scripts disponibles
+
+- `npm run dev`: levanta el entorno de desarrollo con Vite.
+- `npm run build`: genera la version de produccion.
+- `npm run preview`: sirve localmente el build generado.
+
+## Inicio rapido
+
+1. Instala dependencias:
+
+```bash
+npm install
+```
+
+2. Inicia la app en desarrollo:
+
+```bash
+npm run dev
+```
+
+3. En paralelo, cuando se agregue el backend fake, inicia `json-server` con el archivo de datos definido para el proyecto.
+
+## Backend fake
+
+La persistencia de datos estara basada en `json-server`. La idea es simular recursos como:
+
+- `users`
+- `tasks`
+- `sessions` o estado equivalente si se requiere para pruebas
+
+Ejemplo de responsabilidades del backend fake:
+
+- Consultar usuarios.
+- Validar credenciales de manera simulada.
+- Obtener tareas por usuario.
+- Crear, editar y eliminar tareas.
+- Permitir consultas globales para administracion.
+
+## Criterios tecnicos del proyecto
+
+- No usar frameworks SPA.
+- Mantener una arquitectura modular desde el inicio.
+- Evitar mezclar DOM, reglas de negocio y acceso a datos en un mismo archivo.
+- Priorizar codigo legible, escalable y facil de mantener.
+
+## Estado actual
+
+La base del proyecto ya esta montada con Vite. La implementacion funcional de la SPA se ira construyendo por modulos, comenzando idealmente por:
+
+1. Configuracion del router.
+2. Layout base.
+3. Modulo de autenticacion.
+4. Guards de rutas.
+5. Modulo de tareas.
+6. Dashboard.
+7. Panel administrativo.
+
+## Licencia
+
+Este proyecto se distribuye bajo la licencia incluida en [`LICENSE`](./LICENSE).
