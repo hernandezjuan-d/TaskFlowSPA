@@ -6,11 +6,25 @@ Guia para agentes y colaboradores que trabajen en `TaskFlowSPA`.
 
 Construir una SPA de gestion de tareas con JavaScript Vanilla, HTML, CSS y Tailwind CSS que sirva como practica de arquitectura frontend moderna, modularizacion, routing del lado del cliente y control de acceso sin usar frameworks SPA.
 
+## Tipo de arquitectura
+
+Este repositorio usa una arquitectura frontend simple por capas (`layered architecture`) pensada para una primera SPA.
+
+La prioridad no es aplicar una estructura compleja, sino ayudar a que el estudiante entienda con claridad como se separan las responsabilidades principales de la aplicacion:
+
+- `main.js` inicia la app.
+- `router/` gestiona navegacion y proteccion basica de rutas.
+- `views/` contiene las pantallas.
+- `components/` agrupa piezas reutilizables.
+- `services/` maneja datos, sesion y backend fake.
+- `utils/` concentra helpers pequenos.
+- `styles/` organiza estilos globales.
+
 ## Prioridades del repositorio
 
-1. Mantener la aplicacion realmente modular.
+1. Mantener la aplicacion simple y entendible.
 2. Separar vista, logica, estado y acceso a datos.
-3. Evitar soluciones acopladas o dificiles de escalar.
+3. Evitar soluciones acopladas o dificiles de explicar.
 4. Conservar una experiencia SPA fluida sin recargas completas.
 5. Respetar roles, permisos y proteccion de rutas en cada cambio.
 
@@ -80,15 +94,9 @@ Usar o aproximarse a una organizacion como esta:
 
 ```text
 src/
-  app/
-    router/
-    guards/
-    store/
-  modules/
-    auth/
-    dashboard/
-    tasks/
-    admin/
+  main.js
+  router/
+  views/
   components/
   services/
   utils/
@@ -97,10 +105,10 @@ src/
 
 ## Criterios para nuevas contribuciones
 
-- Antes de agregar codigo, identificar si pertenece a `app`, `modules`, `components`, `services` o `utils`.
+- Antes de agregar codigo, identificar si pertenece a `router`, `views`, `components`, `services`, `utils` o `styles`.
 - Si una pieza se reutiliza entre vistas, moverla a `components`.
 - Si una funcion conoce endpoints, almacenamiento o fetch, moverla a `services`.
-- Si una regla depende de autenticacion o permisos, evaluar si debe vivir en `guards` o `utils/auth`.
+- Si una regla depende de autenticacion o permisos, evaluarla dentro del router o en una utilidad sencilla de autorizacion.
 - No duplicar plantillas o logica cuando una abstraccion simple pueda resolverlo.
 
 ## Reglas de UI y renderizado

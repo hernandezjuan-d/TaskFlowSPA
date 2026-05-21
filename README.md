@@ -16,6 +16,22 @@ Este proyecto esta pensado para practicar fundamentos clave del desarrollo front
 - Reutilizacion de componentes.
 - Escalabilidad en Vanilla JS.
 
+## Tipo de arquitectura
+
+Este proyecto usara una arquitectura frontend simple por capas (`layered architecture`) adaptada a una SPA en JavaScript Vanilla.
+
+La idea es separar la aplicacion por responsabilidades para que sea mas facil de aprender, mantener y escalar poco a poco:
+
+- `main.js` como punto de arranque.
+- `router/` para la navegacion SPA.
+- `views/` para las pantallas principales.
+- `components/` para piezas reutilizables.
+- `services/` para datos, sesion y comunicacion con el backend fake.
+- `utils/` para funciones auxiliares.
+- `styles/` para estilos globales y apoyo visual.
+
+Esta decision busca que el equipo entienda primero como funciona una SPA antes de pasar a arquitecturas mas avanzadas o mas modulares por dominio.
+
 ## Stack principal
 
 - JavaScript Vanilla
@@ -64,21 +80,15 @@ La SPA deberia incluir, como minimo, los siguientes modulos o vistas:
 - `Administracion de usuarios` solo para `ADMIN`
 - `Pagina 404`
 
-## Arquitectura sugerida
+## Estructura sugerida
 
-Una estructura inicial sugerida para mantener el proyecto modular y escalable es:
+La estructura inicial del proyecto sera sencilla y progresiva:
 
 ```text
 src/
-  app/
-    router/
-    store/
-    guards/
-  modules/
-    auth/
-    dashboard/
-    tasks/
-    admin/
+  main.js
+  router/
+  views/
   components/
   services/
   utils/
@@ -90,8 +100,8 @@ src/
 - Cada modulo debe encargarse de una responsabilidad clara.
 - Las vistas no deben contener toda la logica de negocio.
 - El acceso al backend debe centralizarse en `services`.
-- La logica de permisos debe aislarse en guards o utilidades de autorizacion.
-- Los componentes compartidos deben ser reutilizables y agnosticos del modulo cuando sea posible.
+- La logica de permisos debe aislarse en el sistema de routing o en utilidades de autorizacion.
+- Los componentes compartidos deben ser reutilizables y faciles de identificar.
 - Las vistas deben apoyarse en Tailwind CSS para mantener consistencia visual y velocidad de construccion.
 
 ## Flujo general de navegacion
@@ -150,13 +160,13 @@ Ejemplo de responsabilidades del backend fake:
 ## Criterios tecnicos del proyecto
 
 - No usar frameworks SPA.
-- Mantener una arquitectura modular desde el inicio.
+- Mantener una arquitectura simple por capas desde el inicio.
 - Evitar mezclar DOM, reglas de negocio y acceso a datos en un mismo archivo.
 - Priorizar codigo legible, escalable y facil de mantener.
 
 ## Estado actual
 
-La base del proyecto ya esta montada con Vite. La implementacion funcional de la SPA se ira construyendo por modulos, comenzando idealmente por:
+La base del proyecto ya esta montada con Vite. La implementacion funcional de la SPA se ira construyendo de forma progresiva, comenzando idealmente por:
 
 1. Configuracion del router.
 2. Layout base.
