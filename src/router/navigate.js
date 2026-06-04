@@ -6,21 +6,23 @@ const adminRoutes = ["/admin"];
 const authRoutes = ["/login", "/register"];
 
 export async function navigate(path) {
-  if (privateRoutes.includes(path) && !isAuthenticated()) {
+  const cleanPath = path.split("?")[0];
+
+  if (privateRoutes.includes(cleanPath) && !isAuthenticated()) {
     return navigateTo("/login");
   }
 
-  if (adminRoutes.includes(path) && getUserRole() !== "ADMIN") {
+  if (adminRoutes.includes(cleanPath) && getUserRole() !== "ADMIN") {
     return navigateTo("/");
   }
 
-  if (authRoutes.includes(path) && isAuthenticated()) {
+  if (authRoutes.includes(cleanPath) && isAuthenticated()) {
     return navigateTo("/");
   }
 
-  const route = routes[path] || routes["/404"];
+  const route = routes[cleanPath] || routes["/404"];
   const module = await route();
-  module.render(path);
+  module.render(cleanPath);
 }
 
 export function navigateTo(path) {

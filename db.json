@@ -15,5 +15,14 @@
       "role": "USER"
     }
   ],
-  "tasks": []
+  "tasks": [
+    {
+      "title": "sfsddfv",
+      "description": "sdfsdf",
+      "status": "Completada",
+      "date": "2026-07-04",
+      "userId": "2",
+      "id": 1
+    }
+  ]
 }
