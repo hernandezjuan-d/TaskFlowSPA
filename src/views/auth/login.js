@@ -1,4 +1,5 @@
-<section class="flex min-h-screen items-center justify-center bg-gradient-to-b from-sky-50 via-white to-blue-100 px-6">
+export function renderLogin() {
+return `<section class="flex min-h-screen items-center justify-center bg-gradient-to-b from-sky-50 via-white to-blue-100 px-6">
   <div class="w-full max-w-md rounded-[2rem] border border-blue-100 bg-white p-10 shadow-xl shadow-blue-100/70">
     
     <div class="mb-8 text-center">
@@ -43,4 +44,5 @@
     </p>
 
   </div>
-</section>
+</section>`;
+}

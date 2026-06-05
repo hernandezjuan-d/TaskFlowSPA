@@ -1,4 +1,6 @@
 import "./shared/styles/global.css";
-import { initRouter } from "./router/index.js";
+import { Login } from "./views/login.js";
 
-initRouter();
+const app = document.getElementById("app");
+
+app.innerHTML = Login();
